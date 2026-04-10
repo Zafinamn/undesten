@@ -377,7 +377,7 @@ export default function Menu() {
           <img
             src="/logo_upscaled_sharpened_4x.png"
             alt="Үндэстэн Зоог"
-            style={{ width: 150, height: 150, objectFit: "contain", background: "transparent", marginBottom: ".75rem" }}
+            style={{ width: 450, height: 450, objectFit: "cover", background: "transparent", marginBottom: "1.5rem" }}
           />
           <h1 style={{ fontSize: 22, fontWeight: 700, letterSpacing: 3, color: "#e8c87a", textAlign: "center" }}>
             ҮНДЭСТЭН ЗООГ
