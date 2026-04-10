@@ -25,7 +25,7 @@ const inter = Inter({
 const sections = [
   {
     num: "",
-    mn: "1 ДҮГЭЭР ШӨЛ",
+    mn: "1 ДҮГЭЭР ХООЛ",
     en: "Soups",
     items: [
       {
@@ -387,9 +387,16 @@ export default function Menu() {
           </p>
         </div>
 
+        {/* ── Navigation Buttons ── */}
+        <div id="nav-buttons" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', padding: '1rem', position: 'relative', zIndex: 1 }}>
+          <button onClick={() => document.getElementById('soups').scrollIntoView({behavior: 'instant'})} style={{ padding: '0.5rem 1rem', background: '#3a2e24', color: '#e8c87a', border: 'none', borderRadius: 4, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>1 ДҮГЭЭР ХООЛ</button>
+          <button onClick={() => document.getElementById('main-dishes').scrollIntoView({behavior: 'instant'})} style={{ padding: '0.5rem 1rem', background: '#3a2e24', color: '#e8c87a', border: 'none', borderRadius: 4, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>2 ДУГААР ХООЛ</button>
+          <button onClick={() => document.getElementById('set-meals').scrollIntoView({behavior: 'instant'})} style={{ padding: '0.5rem 1rem', background: '#3a2e24', color: '#e8c87a', border: 'none', borderRadius: 4, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>БАГЦИЙН ХООЛ СЭТ</button>
+        </div>
+
         {/* ── Sections ── */}
         {sections.map((sec, i) => (
-          <div key={i} style={{ marginBottom: i < sections.length - 1 ? "1rem" : 0, position: "relative", zIndex: 1 }}>
+          <div id={sec.en.toLowerCase().replace(/\s+/g, '-')} key={i} style={{ marginBottom: i < sections.length - 1 ? "1rem" : 0, position: "relative", zIndex: 1 }}>
             <SectionHeader num={sec.num} mn={sec.mn} en={sec.en} />
             {sec.items.map((item, j) => (
               <MenuCard key={j} item={item} />
@@ -413,6 +420,29 @@ export default function Menu() {
             </span>
           </p>
         </div>
+
+        {/* ── Scroll to Top Button ── */}
+        <button onClick={() => document.getElementById('nav-buttons').scrollIntoView({behavior: 'instant'})} style={{
+          position: 'fixed',
+          right: 20,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          width: 40,
+          height: 30,
+          background: '#1a1614',
+          color: '#e8ddd0',
+          border: 'none',
+          borderRadius: 0,
+          fontSize: 18,
+          fontWeight: 'bold',
+          cursor: 'pointer',
+          zIndex: 10,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          ↑
+        </button>
 
       </div>
     </>
