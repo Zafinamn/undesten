@@ -248,14 +248,20 @@ export default function Menu() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10000,
         background: '#1a1614',
         borderBottom: '1px solid rgba(245, 216, 143, 0.2)',
-        padding: '0.5rem', textAlign: 'center',
+        padding: '1rem 0.75rem 0.4rem', textAlign: 'center',
       }}>
-        <h1 className={inter.className} style={{ fontSize: 28, fontWeight: 900, color: '#f5d88f', margin: 0, textShadow: '0 2px 10px rgba(245, 216, 143, 0.5)', letterSpacing: 2, textTransform: 'uppercase' }}>
+        <div style={{ marginBottom: '0.4rem', display: 'flex', justifyContent: 'center' }}>
+          <Image
+            src="/images/logo.png"
+            alt="Үндэстэн Зоог Logo"
+            width={138}
+            height={88}
+            style={{ objectFit: 'contain' }}
+          />
+        </div>
+        <h1 className={inter.className} style={{ fontSize: 18, fontWeight: 900, color: '#f5d88f', margin: '0.3rem 0 0 0', textShadow: '0 1px 8px rgba(245, 216, 143, 0.45)', letterSpacing: 1.5, textTransform: 'uppercase' }}>
           Үндэстэн Зоог
         </h1>
-        <p className={inter.className} style={{ fontSize: 12, color: '#c4a876', margin: '0.1rem 0 0 0', letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>
-          Mongolian Restaurant
-        </p>
       </div>
 
       {/* Scroll Progress Bar */}
@@ -267,7 +273,7 @@ export default function Menu() {
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center',
         background: '#1a1614',
         overflow: 'hidden',
-        padding: '5.5rem 1rem 1.5rem',
+        padding: '9.5rem 1rem 1.5rem',
       }}>
         {/* Navigation Buttons */}
         <div id="nav-buttons" style={{
@@ -291,6 +297,7 @@ export default function Menu() {
           key={sectionIndex}
           id={section.en.toLowerCase().replace(' ', '-')}
           style={{
+            scrollMarginTop: '150px',
             padding: '2rem 1rem',
             background: '#1a1614',
             border: '1px solid rgba(245, 216, 143, 0.2)',
