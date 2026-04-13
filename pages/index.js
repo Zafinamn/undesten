@@ -95,7 +95,9 @@ function MenuCard({ item }) {
         borderRadius: 12,
         overflow: "hidden",
         background: "linear-gradient(135deg, #2a211b 0%, #1f1815 100%)",
-        boxShadow: isHovered ? "0 16px 40px rgba(232, 200, 122, 0.2)" : "0 8px 20px rgba(0, 0, 0, 0.5)",
+        boxShadow: isHovered
+          ? "0 16px 40px rgba(232, 200, 122, 0.2)"
+          : "0 8px 20px rgba(0, 0, 0, 0.5)",
         transition: "all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
         transform: isHovered ? "translateY(-8px)" : "translateY(0)",
         position: "relative",
@@ -110,10 +112,7 @@ function MenuCard({ item }) {
             <div
               style={{
                 position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
+                inset: 0,
                 background: "linear-gradient(135deg, #3a2e24 0%, #2a1f19 100%)",
                 display: "flex",
                 alignItems: "center",
@@ -148,10 +147,7 @@ function MenuCard({ item }) {
           <div
             style={{
               position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
+              inset: 0,
               background: isHovered
                 ? "linear-gradient(180deg, rgba(232,200,122,0.1) 0%, rgba(0,0,0,0.5) 100%)"
                 : "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)",
@@ -205,6 +201,7 @@ function MenuCard({ item }) {
             {item.name}
           </span>
         </div>
+
         <p
           style={{
             fontSize: 13.5,
@@ -217,6 +214,7 @@ function MenuCard({ item }) {
         >
           {item.desc}
         </p>
+
         <div
           style={{
             display: "flex",
@@ -231,7 +229,9 @@ function MenuCard({ item }) {
         >
           <div style={{ fontSize: 26, fontWeight: 700, color: "#f5d88f" }}>
             {item.price}
-            <span style={{ fontSize: 14, fontWeight: 600, color: "#d9a567", marginLeft: 5 }}>₮</span>
+            <span style={{ fontSize: 14, fontWeight: 600, color: "#d9a567", marginLeft: 5 }}>
+              ₮
+            </span>
           </div>
           <div style={{ fontSize: 12, color: "#a89470", fontWeight: 500, letterSpacing: "0.5px" }}>
             {item.kcal ? `kcal: ${item.kcal}` : item.serving || ""}
@@ -247,7 +247,15 @@ function SectionHeader({ num, mn, en }) {
 
   return (
     <div style={{ textAlign: "center", padding: "1.5rem 1rem 1rem", maxWidth: 560, margin: "0 auto 1rem" }}>
-      <div style={{ display: "inline-flex", alignItems: "baseline", gap: hasNum ? ".75rem" : 0, justifyContent: "center", flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "inline-flex",
+          alignItems: "baseline",
+          gap: hasNum ? ".75rem" : 0,
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {hasNum && (
           <span
             style={{
@@ -275,6 +283,7 @@ function SectionHeader({ num, mn, en }) {
           {mn}
         </span>
       </div>
+
       <p
         style={{
           fontSize: 12.5,
@@ -288,6 +297,7 @@ function SectionHeader({ num, mn, en }) {
       >
         {en}
       </p>
+
       <div
         style={{
           height: 2,
@@ -327,19 +337,20 @@ export default function Menu() {
   }, []);
 
   const navBtnStyle = {
-    padding: "0.85rem 1.2rem",
+    padding: "0.9rem 1rem",
     background: "linear-gradient(135deg, #4a3a2a 0%, #3a2e24 100%)",
     color: "#f5d88f",
     border: "1.5px solid #6a5a42",
-    borderRadius: 8,
-    fontSize: 13.5,
+    borderRadius: 10,
+    fontSize: 13,
     fontWeight: 700,
     cursor: "pointer",
     textTransform: "uppercase",
-    letterSpacing: 0.7,
-    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+    letterSpacing: 0.6,
+    boxShadow: "0 4px 12px rgba(0,0,0,0.35)",
     transition: "all 0.3s ease",
-    minWidth: 0,
+    width: "100%",
+    textAlign: "center",
   };
 
   const navBtnHoverIn = (e) => {
@@ -350,7 +361,7 @@ export default function Menu() {
 
   const navBtnHoverOut = (e) => {
     e.currentTarget.style.background = "linear-gradient(135deg, #4a3a2a 0%, #3a2e24 100%)";
-    e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.4)";
+    e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.35)";
     e.currentTarget.style.transform = "translateY(0)";
   };
 
@@ -371,6 +382,7 @@ export default function Menu() {
           width: 100%;
           max-width: 100%;
           min-height: 100vh;
+          scroll-behavior: smooth;
         }
 
         body {
@@ -380,10 +392,6 @@ export default function Menu() {
         button {
           transition: all 0.3s ease;
           font-family: inherit;
-        }
-
-        button:hover {
-          transform: translateY(-2px);
         }
 
         img, video, canvas, svg {
@@ -404,7 +412,7 @@ export default function Menu() {
           height: 3px;
           background: linear-gradient(90deg, #e8c87a, #d4a574);
           transform-origin: left;
-          z-index: 1000;
+          z-index: 10001;
         }
 
         @media (max-width: 768px) {
@@ -414,22 +422,6 @@ export default function Menu() {
 
           #hero {
             padding: 8.5rem 0.75rem 1rem !important;
-          }
-
-          #nav-buttons {
-            width: 100%;
-            max-width: 100%;
-            gap: 0.5rem !important;
-            padding: 0.6rem !important;
-            border-radius: 14px !important;
-          }
-
-          #nav-buttons button {
-            flex: 1 1 100%;
-            width: 100%;
-            padding: 0.75rem 0.9rem !important;
-            font-size: 12px !important;
-            line-height: 1.3 !important;
           }
 
           .menu-section {
@@ -454,15 +446,32 @@ export default function Menu() {
             font-size: 16px !important;
             letter-spacing: 1px !important;
           }
+
+          #nav-buttons {
+            top: auto !important;
+            bottom: 18px !important;
+            right: 50% !important;
+            transform: translateX(50%) !important;
+            flex-direction: row !important;
+            width: auto !important;
+            max-width: calc(100% - 90px) !important;
+            padding: 0.5rem !important;
+            gap: 0.45rem !important;
+            border-radius: 14px !important;
+          }
+
+          #nav-buttons button {
+            width: auto !important;
+            min-width: 88px !important;
+            padding: 0.65rem 0.7rem !important;
+            font-size: 11px !important;
+            line-height: 1.2 !important;
+          }
         }
 
         @media (max-width: 480px) {
           #hero {
             padding: 8.25rem 0.5rem 0.75rem !important;
-          }
-
-          #nav-buttons {
-            padding: 0.5rem !important;
           }
 
           .menu-section {
@@ -478,6 +487,17 @@ export default function Menu() {
 
           .section-title {
             font-size: 21px !important;
+          }
+
+          #nav-buttons {
+            max-width: calc(100% - 70px) !important;
+            bottom: 14px !important;
+          }
+
+          #nav-buttons button {
+            min-width: 78px !important;
+            font-size: 10px !important;
+            padding: 0.58rem 0.55rem !important;
           }
         }
       `}</style>
@@ -522,73 +542,63 @@ export default function Menu() {
         </h1>
       </div>
 
-      <div
-        className="scroll-progress"
-        style={{ transform: `scaleX(${scrollProgress / 100})` }}
-      />
+      <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress / 100})` }} />
 
       <div
         id="hero"
         style={{
-          position: "relative",
+          background: "#1a1614",
+          padding: "9.5rem 1rem 1rem",
+        }}
+      />
+
+      <div
+        id="nav-buttons"
+        style={{
+          position: "fixed",
+          right: "12px",
+          top: "50%",
+          transform: "translateY(-50%)",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          background: "#1a1614",
-          overflow: "hidden",
-          padding: "9.5rem 1rem 1.5rem",
+          gap: "0.7rem",
+          padding: "0.7rem",
+          background: "rgba(26, 22, 20, 0.88)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
+          border: "1px solid rgba(245, 216, 143, 0.18)",
+          borderRadius: 18,
+          boxShadow: "0 12px 30px rgba(0,0,0,0.28)",
+          zIndex: 9999,
+          width: "220px",
         }}
       >
-        <div
-          id="nav-buttons"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "0.8rem",
-            padding: "0.6rem 1rem",
-            position: "relative",
-            zIndex: 1,
-            flexWrap: "wrap",
-            background: "#1a1614",
-            border: "1px solid rgba(245, 216, 143, 0.2)",
-            borderRadius: 18,
-            boxShadow: "0 20px 40px rgba(0,0,0,0.25)",
-            width: "100%",
-            maxWidth: 900,
-          }}
+        <button
+          onClick={() => document.getElementById("soups")?.scrollIntoView({ behavior: "smooth" })}
+          onMouseEnter={navBtnHoverIn}
+          onMouseLeave={navBtnHoverOut}
+          style={navBtnStyle}
         >
-          <button
-            onClick={() => document.getElementById("soups")?.scrollIntoView({ behavior: "smooth" })}
-            onMouseEnter={navBtnHoverIn}
-            onMouseLeave={navBtnHoverOut}
-            style={navBtnStyle}
-          >
-            1 ДҮГЭЭР ХООЛ
-          </button>
+          1 ДҮГЭЭР ХООЛ
+        </button>
 
-          <button
-            onClick={() =>
-              document.getElementById("main-dishes")?.scrollIntoView({ behavior: "smooth" })
-            }
-            onMouseEnter={navBtnHoverIn}
-            onMouseLeave={navBtnHoverOut}
-            style={navBtnStyle}
-          >
-            2 ДУГААР ХООЛ
-          </button>
+        <button
+          onClick={() => document.getElementById("main-dishes")?.scrollIntoView({ behavior: "smooth" })}
+          onMouseEnter={navBtnHoverIn}
+          onMouseLeave={navBtnHoverOut}
+          style={navBtnStyle}
+        >
+          2 ДУГААР ХООЛ
+        </button>
 
-          <button
-            onClick={() =>
-              document.getElementById("set-meals")?.scrollIntoView({ behavior: "smooth" })
-            }
-            onMouseEnter={navBtnHoverIn}
-            onMouseLeave={navBtnHoverOut}
-            style={navBtnStyle}
-          >
-            БАГЦИЙН ХООЛ СЭТ
-          </button>
-        </div>
+        <button
+          onClick={() => document.getElementById("set-meals")?.scrollIntoView({ behavior: "smooth" })}
+          onMouseEnter={navBtnHoverIn}
+          onMouseLeave={navBtnHoverOut}
+          style={navBtnStyle}
+        >
+          БАГЦИЙН ХООЛ СЭТ
+        </button>
       </div>
 
       {sections.map((section, sectionIndex) => (
@@ -672,40 +682,6 @@ export default function Menu() {
           </span>
         </p>
       </div>
-
-      <button
-        onClick={() => document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" })}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.boxShadow = "0 12px 32px rgba(232, 200, 122, 0.5)";
-          e.currentTarget.style.transform = "scale(1.15)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.boxShadow = "0 8px 24px rgba(232, 200, 122, 0.35)";
-          e.currentTarget.style.transform = "scale(1)";
-        }}
-        style={{
-          position: "fixed",
-          right: "12px",
-          bottom: "30px",
-          width: 54,
-          height: 54,
-          background: "linear-gradient(135deg, #f5d88f, #e8b560)",
-          color: "#1a1614",
-          border: "2px solid #d4a567",
-          borderRadius: "50%",
-          fontSize: 26,
-          fontWeight: "bold",
-          cursor: "pointer",
-          zIndex: 9999,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 8px 24px rgba(232, 200, 122, 0.35)",
-          transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
-        }}
-      >
-        ↑
-      </button>
     </>
   );
 }
