@@ -607,7 +607,7 @@ export default function Menu() {
           id={section.en.toLowerCase().replace(" ", "-")}
           className="menu-section"
           style={{
-            scrollMarginTop: "140px",
+            scrollMarginTop: "135px",
             padding: "2rem 1rem",
             background: "#1a1614",
             border: "1px solid rgba(245, 216, 143, 0.2)",
