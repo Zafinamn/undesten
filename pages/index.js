@@ -13,7 +13,7 @@ const sections = [
   {
     num: "",
     mn: "1 ДҮГЭЭР ХООЛ",
-    en: "Main dishes",
+    en: "Soups",
     items: [
       {
         name: "Үндэстэн нэрийн шөл",
