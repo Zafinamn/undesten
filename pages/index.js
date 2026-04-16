@@ -171,7 +171,7 @@ function MenuCard({ item }) {
             fontWeight: 500,
           }}
         >
-          ийшээ зураг шаана
+          ийшээ зураг 
         </div>
       )}
 
